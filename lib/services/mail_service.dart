@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_blog_query/models/rss_feed_dto.dart';
+import 'package:flutter_blog_query/models/send_options.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 
@@ -8,7 +9,8 @@ class MailService {
   final String _cloudFunctionEndpoint =
       "https://sendemailwithbrevoapi-a5r726rr3q-ew.a.run.app";
 
-  Future sendMail(List<RssFeedItem> articlesToSend, String recipient) async {
+  Future sendMail(List<RssFeedItem> articlesToSend, String recipient,
+      SendOptions sendOptions) async {
     if (articlesToSend.isEmpty) {
       throw Exception(
           "You did not select any articles. To send an email, you need to select at least one article!");
@@ -23,7 +25,7 @@ class MailService {
           "Could not send an email because the daily email limit is reached. Please try again tomorrow!");
     }
 
-    final content = _buildContent(articlesToSend, recipient);
+    final content = _buildContent(articlesToSend, recipient, sendOptions);
 
     final headers = <String, String>{};
     headers["accept"] = "application/json";
@@ -41,8 +43,8 @@ class MailService {
     }
   }
 
-  Map<String, dynamic> _buildContent(
-      List<RssFeedItem> articlesToSend, String recipient) {
+  Map<String, dynamic> _buildContent(List<RssFeedItem> articlesToSend,
+      String recipient, SendOptions sendOptions) {
     final res = <String, dynamic>{};
 
     res["sender"] = <String, dynamic>{};
@@ -55,23 +57,34 @@ class MailService {
 
     res["subject"] = "QuickCoder Article Search Results";
     res["htmlContent"] =
-        "<html><head></head><body>${_insertContent(articlesToSend)}</body></html>";
+        "<html><head></head><body>${_insertContent(articlesToSend, sendOptions)}</body></html>";
 
     return res;
   }
 
-  String _insertContent(List<RssFeedItem> articlesToSend) {
+  String _insertContent(
+      List<RssFeedItem> articlesToSend, SendOptions sendOptions) {
     String content = "";
     content = _addHeader(content);
-    content = _addLinks(content, articlesToSend);
+    content = _addLinks(content, articlesToSend, sendOptions);
     content = _addFooter(content);
 
     return content;
   }
 
-  String _addLinks(String content, List<RssFeedItem> articlesToSend) {
+  String _addLinks(String content, List<RssFeedItem> articlesToSend,
+      SendOptions sendOptions) {
     return "$content<p><h1>Hey there,</h1>thank you for visiting my blog! Here are your requested results.</p>${articlesToSend.map((article) {
-      return "<p>🔗 <a href=\"${article.link.toString()}\">${article.title}</a><br />${article.description}<br />📑 ${article.categories!.join(", ")}<br />⌚ ${DateFormat("dd. MMMM yyyy").format(article.date!)}";
+      final description =
+          sendOptions.includeDescriptions ? "${article.description}<br />" : "";
+      final categories = sendOptions.includeTags
+          ? "📑 ${article.categories!.join(", ")}<br />"
+          : "";
+      final date = sendOptions.includeDates
+          ? "⌚ ${DateFormat("dd. MMMM yyyy").format(article.date!)}"
+          : "";
+
+      return "<p>🔗 <a href=\"${article.link.toString()}\">${article.title}</a><br />$description$categories$date";
     }).join("")}";
   }
 

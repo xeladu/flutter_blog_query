@@ -7,7 +7,7 @@ class TagWidget extends StatelessWidget {
   @override
   build(BuildContext context) {
     return ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 550),
+        constraints: const BoxConstraints(maxWidth: 400),
         child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,

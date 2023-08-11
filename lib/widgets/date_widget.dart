@@ -8,7 +8,7 @@ class DateWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 120),
+        constraints: const BoxConstraints(maxWidth: 180),
         child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,

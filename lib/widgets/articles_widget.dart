@@ -32,8 +32,8 @@ class _ArticlesWidgetState extends ConsumerState<ArticlesWidget> {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Text("Article list ($itemsCount results, $selectedCount selected)",
-            style: const TextStyle(
-                color: Colors.white38,
+            style: TextStyle(
+                color: AppColors.fontSecondary,
                 fontSize: 16,
                 fontWeight: FontWeight.bold)),
         TextButton(
@@ -57,8 +57,9 @@ class _ArticlesWidgetState extends ConsumerState<ArticlesWidget> {
                 return CheckboxListTile(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
-                    tileColor:
-                        index.isEven ? Colors.transparent : Colors.white10,
+                    tileColor: index.isEven
+                        ? Colors.transparent
+                        : AppColors.backgroundAlternate,
                     key: ValueKey(item.title),
                     value: item.selected,
                     onChanged: (val) {
@@ -81,7 +82,7 @@ class _ArticlesWidgetState extends ConsumerState<ArticlesWidget> {
                                         (Set<MaterialState> states) => states
                                                 .contains(MaterialState.hovered)
                                             ? AppColors.primary
-                                            : Colors.white),
+                                            : AppColors.fontPrimary),
                               ),
                               onPressed: () async => await launchUrl(
                                   items[index].link!,
@@ -94,8 +95,9 @@ class _ArticlesWidgetState extends ConsumerState<ArticlesWidget> {
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold))),
                           Text(items[index].description!,
-                              style: const TextStyle(
-                                  fontSize: 16, color: Colors.grey)),
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: AppColors.fontSecondary)),
                           const SizedBox(height: 6),
                           Wrap(children: [
                             DateWidget(date: items[index].date!),

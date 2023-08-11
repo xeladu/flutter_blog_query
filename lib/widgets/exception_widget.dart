@@ -27,18 +27,18 @@ class _ExceptionWidgetState extends ConsumerState<ExceptionWidget> {
         color: Colors.red,
       )),
       const SizedBox(height: 10),
-      const Center(
+      Center(
           child: Text("Something went wrong",
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white))),
+                  color: AppColors.fontPrimary))),
       const SizedBox(height: 10),
       Center(
           child: Text(widget.error,
               textAlign: TextAlign.center,
-              style: const TextStyle(color: Colors.white))),
+              style: TextStyle(color: AppColors.fontPrimary))),
       if (widget.offerFilterReset) ...[
         const SizedBox(height: 10),
         SizedBox(

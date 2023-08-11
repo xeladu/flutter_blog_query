@@ -41,9 +41,9 @@ class _FilterWidgetState extends ConsumerState<FilterWidget> {
   Widget _buildHiddenState() {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        const Text("Filter options",
+        Text("Filter options",
             style: TextStyle(
-                color: Colors.white38,
+                color: AppColors.fontSecondary,
                 fontSize: 16,
                 fontWeight: FontWeight.bold)),
         IconButton(
@@ -68,9 +68,9 @@ class _FilterWidgetState extends ConsumerState<FilterWidget> {
 
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        const Text("Filter options",
+        Text("Filter options",
             style: TextStyle(
-                color: Colors.white38,
+                color: AppColors.fontSecondary,
                 fontSize: 16,
                 fontWeight: FontWeight.bold)),
         IconButton(
@@ -101,7 +101,7 @@ class _FilterWidgetState extends ConsumerState<FilterWidget> {
                       contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                       key: ValueKey(entry.key),
                       title: Text(entry.key,
-                          style: const TextStyle(color: Colors.white)),
+                          style: TextStyle(color: AppColors.fontPrimary)),
                       onChanged: (val) {
                         // update the switch in this widget
                         setState(() {
@@ -128,14 +128,14 @@ class _FilterWidgetState extends ConsumerState<FilterWidget> {
           ref.read(filterProvider.notifier).state =
               FilterOptions.fromSettings(_categoryOptions, _searchText);
         },
-        decoration: const InputDecoration(
+        decoration: InputDecoration(
             enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.white)),
+                borderSide: BorderSide(color: AppColors.fontPrimary)),
             focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.white)),
+                borderSide: BorderSide(color: AppColors.fontPrimary)),
             labelText: "Enter text to search for matching articles",
-            labelStyle:
-                TextStyle(color: Colors.white38, fontWeight: FontWeight.w100)),
+            labelStyle: TextStyle(
+                color: AppColors.fontSecondary, fontWeight: FontWeight.w100)),
       )
     ]);
   }

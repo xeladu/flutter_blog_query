@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_blog_query/utils/colors.dart';
 
 class LoadingWidget extends StatelessWidget {
   final String? caption;
@@ -22,10 +23,10 @@ class LoadingWidget extends StatelessWidget {
       Center(
           child: Text(caption!,
               textAlign: TextAlign.center,
-              style: const TextStyle(
+              style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white)))
+                  color: AppColors.fontPrimary)))
     ];
   }
 }

@@ -19,7 +19,7 @@ class _HomeWidgetState extends ConsumerState<HomeWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppColors.background,
       body: Center(
           child: ConstrainedBox(
               constraints: const BoxConstraints(
@@ -27,10 +27,10 @@ class _HomeWidgetState extends ConsumerState<HomeWidget> {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text("Advanced article search",
+                    Text("Advanced article search",
                         style: TextStyle(
                             fontSize: 24,
-                            color: Colors.white,
+                            color: AppColors.fontPrimary,
                             fontWeight: FontWeight.bold)),
                     const SizedBox(height: 10),
                     ref.watch(loadArticlesProvider).when(
@@ -55,10 +55,10 @@ class _HomeWidgetState extends ConsumerState<HomeWidget> {
               context: context,
               builder: ((context) => const SendEmailWidget())),
           backgroundColor: AppColors.primary,
-          icon: const Icon(Icons.mail, color: Colors.white),
-          label: const Text("Send by email",
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold))),
+          icon: Icon(Icons.mail, color: AppColors.fontPrimary),
+          label: Text("Send by email",
+              style: TextStyle(
+                  color: AppColors.fontPrimary, fontWeight: FontWeight.bold))),
     );
   }
 }

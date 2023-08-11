@@ -43,23 +43,23 @@ class _SendEmailWidgetState extends ConsumerState<SendEmailWidget> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-        backgroundColor: const Color.fromARGB(255, 48, 48, 48),
-        surfaceTintColor: const Color.fromARGB(255, 48, 48, 48),
+        backgroundColor: AppColors.backgroundAlternate,
+        surfaceTintColor: AppColors.backgroundAlternate,
         content: Container(
             height: 450,
             width: 400,
-            color: const Color.fromARGB(255, 48, 48, 48),
+            color: AppColors.backgroundAlternate,
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              const Text("Send articles by email",
+              Text("Send articles by email",
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white)),
+                      color: AppColors.fontPrimary)),
               const SizedBox(height: 10),
               Text(
                   "Enter an address to send the selected ${ref.watch(filteredArticlesProvider).where((element) => element.selected).length} articles by mail.",
-                  style: const TextStyle(color: Colors.white)),
+                  style: TextStyle(color: AppColors.fontPrimary)),
               const SizedBox(height: 10),
               TextField(
                 controller: _controller,
@@ -67,19 +67,19 @@ class _SendEmailWidgetState extends ConsumerState<SendEmailWidget> {
                   _recipient = val;
                 },
                 style: TextStyle(color: AppColors.primary),
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                     labelText: "Enter email address",
                     enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white)),
+                        borderSide: BorderSide(color: AppColors.fontPrimary)),
                     focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white))),
+                        borderSide: BorderSide(color: AppColors.fontPrimary))),
               ),
               const SizedBox(height: 10),
-              const Text("Send options",
+              Text("Send options",
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white)),
+                      color: AppColors.fontPrimary)),
               const SizedBox(height: 10),
               SwitchListTile(
                   controlAffinity: ListTileControlAffinity.leading,
@@ -90,8 +90,8 @@ class _SendEmailWidgetState extends ConsumerState<SendEmailWidget> {
                       _includeDescriptions = val;
                     });
                   },
-                  title: const Text("Include description",
-                      style: TextStyle(color: Colors.white))),
+                  title: Text("Include description",
+                      style: TextStyle(color: AppColors.fontPrimary))),
               const SizedBox(height: 10),
               SwitchListTile(
                   controlAffinity: ListTileControlAffinity.leading,
@@ -102,8 +102,8 @@ class _SendEmailWidgetState extends ConsumerState<SendEmailWidget> {
                       _includeTags = val;
                     });
                   },
-                  title: const Text("Include tags",
-                      style: TextStyle(color: Colors.white))),
+                  title: Text("Include tags",
+                      style: TextStyle(color: AppColors.fontPrimary))),
               const SizedBox(height: 10),
               SwitchListTile(
                   controlAffinity: ListTileControlAffinity.leading,
@@ -114,8 +114,8 @@ class _SendEmailWidgetState extends ConsumerState<SendEmailWidget> {
                       _includeDates = val;
                     });
                   },
-                  title: const Text("Include date",
-                      style: TextStyle(color: Colors.white))),
+                  title: Text("Include date",
+                      style: TextStyle(color: AppColors.fontPrimary))),
               if (_showDetails) ...[
                 const SizedBox(height: 10),
                 Center(
@@ -188,7 +188,8 @@ class _SendEmailWidgetState extends ConsumerState<SendEmailWidget> {
                   setState(() {});
                 }
               },
-              child: const Text("Send", style: TextStyle(color: Colors.white)))
+              child:
+                  Text("Send", style: TextStyle(color: AppColors.fontPrimary)))
         ]);
   }
 }

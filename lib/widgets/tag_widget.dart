@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_blog_query/utils/colors.dart';
 
 class TagWidget extends StatelessWidget {
   final Set<String> tags;
@@ -12,13 +13,13 @@ class TagWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const Icon(Icons.local_offer, size: 16, color: Colors.white38),
+              Icon(Icons.local_offer, size: 16, color: AppColors.fontSecondary),
               const SizedBox(width: 6),
               ...tags.map((tag) => Padding(
                   padding: const EdgeInsets.only(right: 6),
                   child: Text(tag,
-                      style: const TextStyle(
-                          fontSize: 14, color: Colors.white38))))
+                      style: TextStyle(
+                          fontSize: 14, color: AppColors.fontSecondary))))
             ]));
   }
 }

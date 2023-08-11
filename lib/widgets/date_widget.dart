@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_blog_query/utils/colors.dart';
 import 'package:intl/intl.dart';
 
 class DateWidget extends StatelessWidget {
@@ -13,10 +14,12 @@ class DateWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const Icon(Icons.calendar_month, size: 16, color: Colors.white38),
+              Icon(Icons.calendar_month,
+                  size: 16, color: AppColors.fontSecondary),
               const SizedBox(width: 6),
               Text(DateFormat("dd. MMMM yyyy").format(date),
-                  style: const TextStyle(fontSize: 14, color: Colors.white38))
+                  style:
+                      TextStyle(fontSize: 14, color: AppColors.fontSecondary))
             ]));
   }
 }

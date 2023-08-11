@@ -160,14 +160,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.3"
-  petitparser:
-    dependency: transitive
-    description:
-      name: petitparser
-      sha256: cb3798bef7fc021ac45b308f4b51208a152792445cce0448c9a4ba5879dd8750
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.4.0"
   plugin_platform_interface:
     dependency: transitive
     description:
@@ -325,22 +317,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
-  webfeed:
-    dependency: "direct main"
-    description:
-      name: webfeed
-      sha256: f30cbf8cc6c72ab0419acd2c686be5bc69b6abdbaaad21d90f150853297eb8c5
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.7.0"
-  xml:
-    dependency: transitive
-    description:
-      name: xml
-      sha256: "80d494c09849dc3f899d227a78c30c5b949b985ededf884cb3f3bcd39f4b447a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.4.1"
 sdks:
   dart: ">=3.0.0 <4.0.0"
   flutter: ">=3.10.0"

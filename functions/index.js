@@ -51,34 +51,3 @@ exports.sendEmailWithBrevoApi = onRequest(settings, async (req, res) => {
         res.status(error.response ? error.response.status : 500).send(errorMessage);
     }
 });
-
-exports.redirectToQuickCoderFeed = onRequest(settings, async (req, res) => {
-    const redirectUrl = 'https://quickcoder.org/feed/';
-
-    log(req);
-    log(req.headers);
-
-    try {
-        const response = await axios({
-            method: req.method,
-            url: redirectUrl,
-            headers: req.headers,
-            data: req.body,
-            rejectUnauthorized: false
-        });
-
-        log(response);
-
-        // Get the response headers
-        const responseHeaders = response.headers;
-
-        // Get the response body
-        const responseBody = response.data;
-
-        // Send the response to the original request
-        res.set(responseHeaders).send(responseBody);
-    } catch (error) {
-        res.status(500).send('Error redirecting and returning response:' + error);
-    }
-});
-

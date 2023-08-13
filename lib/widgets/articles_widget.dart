@@ -30,25 +30,29 @@ class _ArticlesWidgetState extends ConsumerState<ArticlesWidget> {
     }
 
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Text("Article list ($itemsCount results, $selectedCount selected)",
-            style: TextStyle(
-                color: AppColors.fontSecondary,
-                fontSize: 16,
-                fontWeight: FontWeight.bold)),
-        TextButton(
-            style: const ButtonStyle(
-                overlayColor: MaterialStatePropertyAll(Colors.transparent)),
-            child: Text("Select all articles",
-                style: TextStyle(color: AppColors.primary, fontSize: 14)),
-            onPressed: () {
-              setState(() {
-                items
-                    .where((item) => !item.selected)
-                    .forEach((element) => element.toggleSelected());
-              });
-            }),
-      ]),
+      Container(
+        color: AppColors.background,
+        child:
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          Text("Article list ($itemsCount results, $selectedCount selected)",
+              style: TextStyle(
+                  color: AppColors.fontSecondary,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold)),
+          TextButton(
+              style: const ButtonStyle(
+                  overlayColor: MaterialStatePropertyAll(Colors.transparent)),
+              child: Text("Select all articles",
+                  style: TextStyle(color: AppColors.primary, fontSize: 14)),
+              onPressed: () {
+                setState(() {
+                  items
+                      .where((item) => !item.selected)
+                      .forEach((element) => element.toggleSelected());
+                });
+              }),
+        ]),
+      ),
       Expanded(
           child: ListView.builder(
               shrinkWrap: true,
@@ -58,7 +62,7 @@ class _ArticlesWidgetState extends ConsumerState<ArticlesWidget> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
                     tileColor: index.isEven
-                        ? Colors.transparent
+                        ? AppColors.background
                         : AppColors.backgroundAlternate,
                     key: ValueKey(item.title),
                     value: item.selected,

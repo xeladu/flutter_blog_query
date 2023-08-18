@@ -1,6 +1,5 @@
 const { onRequest } = require("firebase-functions/v2/https");
 const axios = require('axios');
-const { log } = require("firebase-functions/logger");
 
 const settings = {
     region: "europe-west1",

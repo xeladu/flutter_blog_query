@@ -1,11 +1,11 @@
 {
-    "name": "flutter_blog_query",
-    "short_name": "flutter_blog_query",
+    "name": "QuickCoder Advanced Article Search",
+    "short_name": "Advanced Article Search",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "A powerful search function for the QuickCoder blog archive",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

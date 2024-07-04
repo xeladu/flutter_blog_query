@@ -22,10 +22,46 @@ class _HomeWidgetState extends ConsumerState<HomeWidget> {
     return Scaffold(
       backgroundColor: AppColors.background,
       body: Stack(children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Center(
+              child: ConstrainedBox(
+                  constraints: const BoxConstraints(
+                      maxWidth: 1200, maxHeight: double.infinity),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                            color: AppColors.background,
+                            constraints: const BoxConstraints(minWidth: 800),
+                            child: Text("Advanced article search",
+                                style: TextStyle(
+                                    fontSize: 24,
+                                    color: AppColors.fontPrimary,
+                                    fontWeight: FontWeight.bold))),
+                        Container(height: 10, color: AppColors.background),
+                        ref.watch(loadArticlesProvider).when(
+                            error: (err, st) =>
+                                ExceptionWidget(error: err.toString()),
+                            loading: () => const LoadingWidget(
+                                caption: "Preparing blog articles"),
+                            data: (data) => Expanded(
+                                    child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                      const FilterWidget(),
+                                      Container(
+                                          height: 10,
+                                          color: AppColors.background),
+                                      const Expanded(child: ArticlesWidget())
+                                    ])))
+                      ]))),
+        ),
         Align(
             alignment: Alignment.bottomLeft,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(16.0),
               child: FloatingActionButton.extended(
                   extendedIconLabelSpacing: 8,
                   extendedPadding: const EdgeInsets.fromLTRB(16, 0, 24, 0),
@@ -40,42 +76,6 @@ class _HomeWidgetState extends ConsumerState<HomeWidget> {
                           color: AppColors.fontPrimary,
                           fontWeight: FontWeight.bold))),
             )),
-        Center(
-            child: ConstrainedBox(
-                constraints: const BoxConstraints(
-                    maxWidth: 800, maxHeight: double.infinity),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                          color: AppColors.background,
-                          constraints: const BoxConstraints(minWidth: 800),
-                          child: Text("Advanced article search",
-                              style: TextStyle(
-                                  fontSize: 24,
-                                  color: AppColors.fontPrimary,
-                                  fontWeight: FontWeight.bold))),
-                      Container(
-                        height: 10,
-                        color: AppColors.background,
-                      ),
-                      ref.watch(loadArticlesProvider).when(
-                          error: (err, st) =>
-                              ExceptionWidget(error: err.toString()),
-                          loading: () => const LoadingWidget(
-                              caption: "Preparing blog articles"),
-                          data: (data) => Expanded(
-                                  child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                    const FilterWidget(),
-                                    Container(
-                                        height: 10,
-                                        color: AppColors.background),
-                                    const Expanded(child: ArticlesWidget())
-                                  ])))
-                    ])))
       ]),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () async => await showDialog(

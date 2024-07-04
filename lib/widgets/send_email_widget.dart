@@ -139,12 +139,12 @@ class _SendEmailWidgetState extends ConsumerState<SendEmailWidget> {
         actions: [
           TextButton(
               style: const ButtonStyle(
-                  overlayColor: MaterialStatePropertyAll(Colors.transparent)),
+                  overlayColor: WidgetStatePropertyAll(Colors.transparent)),
               child: Text("Cancel", style: TextStyle(color: AppColors.primary)),
               onPressed: () => Navigator.of(context).pop(false)),
           ElevatedButton(
               style: ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(AppColors.primary)),
+                  backgroundColor: WidgetStatePropertyAll(AppColors.primary)),
               onPressed: () async {
                 setState(() {
                   _showLoading = true;

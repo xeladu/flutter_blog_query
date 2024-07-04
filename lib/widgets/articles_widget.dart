@@ -41,7 +41,7 @@ class _ArticlesWidgetState extends ConsumerState<ArticlesWidget> {
                   fontWeight: FontWeight.bold)),
           TextButton(
               style: const ButtonStyle(
-                  overlayColor: MaterialStatePropertyAll(Colors.transparent)),
+                  overlayColor: WidgetStatePropertyAll(Colors.transparent)),
               child: Text("Select all articles",
                   style: TextStyle(color: AppColors.primary, fontSize: 14)),
               onPressed: () {
@@ -77,14 +77,14 @@ class _ArticlesWidgetState extends ConsumerState<ArticlesWidget> {
                         children: [
                           TextButton(
                               style: ButtonStyle(
-                                padding: MaterialStateProperty.all<EdgeInsets>(
+                                padding: WidgetStateProperty.all<EdgeInsets>(
                                     const EdgeInsets.all(0)),
-                                overlayColor: MaterialStateProperty.resolveWith(
+                                overlayColor: WidgetStateProperty.resolveWith(
                                     (states) => Colors.transparent),
                                 foregroundColor:
-                                    MaterialStateProperty.resolveWith<Color?>(
-                                        (Set<MaterialState> states) => states
-                                                .contains(MaterialState.hovered)
+                                    WidgetStateProperty.resolveWith<Color?>(
+                                        (Set<WidgetState> states) => states
+                                                .contains(WidgetState.hovered)
                                             ? AppColors.primary
                                             : AppColors.fontPrimary),
                               ),
@@ -103,7 +103,8 @@ class _ArticlesWidgetState extends ConsumerState<ArticlesWidget> {
                                   fontSize: 16,
                                   color: AppColors.fontSecondary)),
                           const SizedBox(height: 6),
-                          Wrap(children: [
+                          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
                             DateWidget(date: items[index].date!),
                             TagWidget(tags: items[index].categories!.toSet())
                           ])

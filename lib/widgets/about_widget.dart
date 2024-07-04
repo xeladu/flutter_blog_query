@@ -146,7 +146,7 @@ class _AboutWidgetState extends State<AboutWidget> {
         actions: [
           ElevatedButton(
               style: ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(AppColors.primary)),
+                  backgroundColor: WidgetStatePropertyAll(AppColors.primary)),
               child:
                   Text("Close", style: TextStyle(color: AppColors.fontPrimary)),
               onPressed: () => Navigator.of(context).pop(false))

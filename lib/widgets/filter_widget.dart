@@ -40,29 +40,27 @@ class _FilterWidgetState extends ConsumerState<FilterWidget> {
 
   Widget _buildHiddenState() {
     return Container(
-      color: AppColors.background,
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Text("Filter options",
-              style: TextStyle(
-                  color: AppColors.fontSecondary,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold)),
-          IconButton(
-            icon: Icon(
-                _hidden
-                    ? Icons.keyboard_double_arrow_down
-                    : Icons.keyboard_double_arrow_up,
-                color: AppColors.primary),
-            onPressed: () {
-              setState(() {
-                _hidden = !_hidden;
-              });
-            },
-          )
-        ])
-      ]),
-    );
+        color: AppColors.background,
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            Text("Filter options",
+                style: TextStyle(
+                    color: AppColors.fontSecondary,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold)),
+            TextButton(
+                child: Row(children: [
+                  Text("Show", style: TextStyle(color: AppColors.primary)),
+                  const SizedBox(width: 8),
+                  Icon(Icons.keyboard_double_arrow_down, color: AppColors.primary)
+                ]),
+                onPressed: () {
+                  setState(() {
+                    _hidden = !_hidden;
+                  });
+                })
+          ])
+        ]));
   }
 
   Widget _buildVisibleState() {
@@ -70,38 +68,40 @@ class _FilterWidgetState extends ConsumerState<FilterWidget> {
     _searchText = ref.watch(filterProvider).searchText;
 
     return Container(
-      color: AppColors.background,
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Text("Filter options",
-              style: TextStyle(
-                  color: AppColors.fontSecondary,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold)),
-          IconButton(
-            icon: Icon(
-                _hidden
-                    ? Icons.keyboard_double_arrow_down
-                    : Icons.keyboard_double_arrow_up,
-                color: AppColors.primary),
-            onPressed: () {
-              setState(() {
-                _hidden = !_hidden;
-              });
-            },
-          )
-        ]),
-        Wrap(
-          crossAxisAlignment: WrapCrossAlignment.start,
-          alignment: WrapAlignment.start,
-          runAlignment: WrapAlignment.start,
-          children: ref
-              .watch(filterProvider)
-              .categoryFilterStates
-              .entries
-              .map((entry) => SizedBox(
+        color: AppColors.background,
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            Text("Filter options",
+                style: TextStyle(
+                    color: AppColors.fontSecondary,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold)),
+            TextButton(
+                child: Row(children: [
+                  Text("Hide", style: TextStyle(color: AppColors.primary)),
+                  const SizedBox(width: 8),
+                  Icon(Icons.keyboard_double_arrow_up, color: AppColors.primary)
+                ]),
+                onPressed: () {
+                  setState(() {
+                    _hidden = !_hidden;
+                  });
+                })
+          ]),
+          Wrap(
+            crossAxisAlignment: WrapCrossAlignment.start,
+            alignment: WrapAlignment.start,
+            runAlignment: WrapAlignment.start,
+            children: ref
+                .watch(filterProvider)
+                .categoryFilterStates
+                .entries
+                .map((entry) => SizedBox(
                     width: 200,
                     child: SwitchListTile(
+                        activeTrackColor: AppColors.fontSecondary,
+                        thumbColor: WidgetStatePropertyAll(AppColors.primary),
+                        inactiveTrackColor: AppColors.backgroundAlternate,
                         controlAffinity: ListTileControlAffinity.leading,
                         contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                         key: ValueKey(entry.key),
@@ -119,30 +119,29 @@ class _FilterWidgetState extends ConsumerState<FilterWidget> {
                               FilterOptions.fromSettings(
                                   _categoryOptions, _searchText);
                         },
-                        value: entry.value),
-                  ))
-              .toList(),
-        ),
-        TextField(
-          controller: _controller,
-          style: TextStyle(color: AppColors.primary),
-          onChanged: (val) async {
-            setState(() {
-              _searchText = val;
-            });
-            ref.read(filterProvider.notifier).state =
-                FilterOptions.fromSettings(_categoryOptions, _searchText);
-          },
-          decoration: InputDecoration(
-              enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.fontPrimary)),
-              focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.fontPrimary)),
-              labelText: "Enter text to search for matching articles",
-              labelStyle: TextStyle(
-                  color: AppColors.fontSecondary, fontWeight: FontWeight.w100)),
-        )
-      ]),
-    );
+                        value: entry.value)))
+                .toList(),
+          ),
+          const SizedBox(height: 6),
+          TextField(
+              controller: _controller,
+              style: TextStyle(color: AppColors.primary),
+              onChanged: (val) async {
+                setState(() {
+                  _searchText = val;
+                });
+                ref.read(filterProvider.notifier).state =
+                    FilterOptions.fromSettings(_categoryOptions, _searchText);
+              },
+              decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: AppColors.fontPrimary)),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: AppColors.fontPrimary)),
+                  labelText: "Enter text to search for matching articles",
+                  labelStyle: TextStyle(
+                      color: AppColors.fontSecondary,
+                      fontWeight: FontWeight.w100)))
+        ]));
   }
 }

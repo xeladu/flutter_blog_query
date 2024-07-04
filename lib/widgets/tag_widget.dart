@@ -11,15 +11,15 @@ class TagWidget extends StatelessWidget {
         constraints: const BoxConstraints(maxWidth: 400),
         child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Icon(Icons.local_offer, size: 16, color: AppColors.fontSecondary),
               const SizedBox(width: 6),
-              ...tags.map((tag) => Padding(
+              Padding(
                   padding: const EdgeInsets.only(right: 6),
-                  child: Text(tag,
+                  child: Text(tags.join(", "),
                       style: TextStyle(
-                          fontSize: 14, color: AppColors.fontSecondary))))
+                          fontSize: 14, color: AppColors.fontSecondary)))
             ]));
   }
 }
